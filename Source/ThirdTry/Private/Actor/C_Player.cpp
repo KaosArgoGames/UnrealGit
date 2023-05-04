@@ -5,20 +5,23 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "Components/ChildActorComponent.h"
+#include "../../ThirdTry.h"
+#include <ThirdTry/Public/Actor/CodeWeapon.h>
 
 AC_Player::AC_Player()
 {
 	//Create Components
 	cameraMount = CreateDefaultSubobject<USpringArmComponent>("cameraMount");
 	camera = CreateDefaultSubobject<UCameraComponent>("camera");
-	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaopnChildActor");
+	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
+
 
 	//Attach Components
 	cameraMount->SetupAttachment(RootComponent);
 	camera->SetupAttachment(cameraMount, USpringArmComponent::SocketName);
-	WeaponChildActor->SetupAttachment(GetMesh());
-	WeaponChildActor->SetChildActorClass(Weapon);
-	//WeaponChildActor->SetupAttachment(GetMesh(), GetMesh()->GetSocketBoneName(FName("WeaponTransform")));
+	//WeaponChildActor->SetupAttachment(GetMesh());
+	WeaponChildActor->SetChildActorClass(WeaponClass);
+	WeaponChildActor->SetupAttachment(GetMesh(), "WeaponTransform");
 
 	//Assign Variables
 	cameraMount->bUsePawnControlRotation = true;
@@ -38,7 +41,7 @@ void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveForward", this, &AC_Player::MoveForward);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AC_Player::MoveRight);
 	//Combat
-	
+	PlayerInputComponent->BindAction("StandardAttack", EInputEvent::IE_Pressed, this, &AC_Player::Attack);
 }
 void AC_Player::MoveForward(float AxisValue)
 {
@@ -51,4 +54,9 @@ void AC_Player::MoveRight(float AxisValue)
 	FRotationMatrix MakeRotation = FRotator(0.0f, GetControlRotation().Yaw, 0.0f);
 
 	AddMovementInput(MakeRotation.GetScaledAxis(EAxis::Y), AxisValue);
+}
+void AC_Player::Attack()
+{
+	UE_LOG(Game, Warning, TEXT("Attack Called"));
+	APlayerChar::Attack();
 }

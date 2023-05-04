@@ -2,6 +2,7 @@
 
 
 #include "Actor/PlayerChar.h"
+#include "../../ThirdTry.h"
 
 // Sets default values
 APlayerChar::APlayerChar()
@@ -17,7 +18,7 @@ APlayerChar::APlayerChar()
 void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
-
+	Child = Cast<ACodeWeapon>(WeaponChildActor);
 }
 
 // Called every frame
@@ -32,5 +33,11 @@ void APlayerChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void APlayerChar::Attack()
+{
+	UE_LOG(Game, Warning, TEXT("Didn't Crash"));
+	Child->Attack();
 }
 
