@@ -1,0 +1,56 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "Actor/C_Player.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+#include "Components/ChildActorComponent.h"
+
+AC_Player::AC_Player()
+{
+	//Create Components
+	cameraMount = CreateDefaultSubobject<USpringArmComponent>("cameraMount");
+	camera = CreateDefaultSubobject<UCameraComponent>("camera");
+	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaopnChildActor");
+
+
+
+
+	//Attach Components
+	cameraMount->SetupAttachment(RootComponent);
+	camera->SetupAttachment(cameraMount, USpringArmComponent::SocketName);
+	WeaponChildActor->SetupAttachment(GetMesh(), GetMesh()->GetSocketBoneName(FName("WeaponTransform")));
+
+	//Assign Variables
+	cameraMount->bUsePawnControlRotation = true;
+	cameraMount->SetRelativeLocationAndRotation(FVector(0.0f, 80.0f, 30.f), FRotator(0.0f, 0.0f, 0.0f));
+	cameraMount->TargetArmLength = 210.0f;
+	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 90.0f));
+	WeaponChildActor->SetChildActorClass(Weapon);
+
+}
+
+void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+{
+	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	//Rotation
+	PlayerInputComponent->BindAxis("TurnTo", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
+	//Movement
+	PlayerInputComponent->BindAxis("MoveForward", this, &AC_Player::MoveForward);
+	PlayerInputComponent->BindAxis("MoveRight", this, &AC_Player::MoveRight);
+	//Combat
+	
+}
+void AC_Player::MoveForward(float AxisValue)
+{
+	FRotator MakeRotation = FRotator(0.0f, GetControlRotation().Yaw, 0.0f);
+
+	AddMovementInput(MakeRotation.Vector(), AxisValue);
+}
+void AC_Player::MoveRight(float AxisValue)
+{
+	FRotationMatrix MakeRotation = FRotator(0.0f, GetControlRotation().Yaw, 0.0f);
+
+	AddMovementInput(MakeRotation.GetScaledAxis(EAxis::Y), AxisValue);
+}
