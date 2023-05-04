@@ -19,7 +19,7 @@ protected:
 	class USpringArmComponent* cameraMount;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera");
 	class UCameraComponent* camera;
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components");
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components");
 	UChildActorComponent* WeaponChildActor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	TSubclassOf<AActor> Weapon;

@@ -13,20 +13,18 @@ AC_Player::AC_Player()
 	camera = CreateDefaultSubobject<UCameraComponent>("camera");
 	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaopnChildActor");
 
-
-
-
 	//Attach Components
 	cameraMount->SetupAttachment(RootComponent);
 	camera->SetupAttachment(cameraMount, USpringArmComponent::SocketName);
-	WeaponChildActor->SetupAttachment(GetMesh(), GetMesh()->GetSocketBoneName(FName("WeaponTransform")));
+	WeaponChildActor->SetupAttachment(GetMesh());
+	WeaponChildActor->SetChildActorClass(Weapon);
+	//WeaponChildActor->SetupAttachment(GetMesh(), GetMesh()->GetSocketBoneName(FName("WeaponTransform")));
 
 	//Assign Variables
 	cameraMount->bUsePawnControlRotation = true;
 	cameraMount->SetRelativeLocationAndRotation(FVector(0.0f, 80.0f, 30.f), FRotator(0.0f, 0.0f, 0.0f));
 	cameraMount->TargetArmLength = 210.0f;
 	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 90.0f));
-	WeaponChildActor->SetChildActorClass(Weapon);
 
 }
 
