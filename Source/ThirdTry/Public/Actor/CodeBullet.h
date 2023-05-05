@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Components/SphereComponent.h"
 #include "CodeBullet.generated.h"
 
 UCLASS()
@@ -19,7 +20,12 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	void K2_DestroyActor() override;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	USphereComponent* SphereCollision;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	UStaticMeshComponent* Sphere;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	UMovementComponent* Move;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	float TimeToDestroy;
 public:	
