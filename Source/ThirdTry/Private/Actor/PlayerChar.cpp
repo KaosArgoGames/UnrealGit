@@ -18,11 +18,7 @@ APlayerChar::APlayerChar()
 void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
-	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
-	if (nullptr == Child)
-	{
-		UE_LOG(Game, Error, TEXT("Child in PlayerChar is Null"));
-	}
+	Child = Cast<ACodeWeapon>(WeaponChildActor);
 }
 
 // Called every frame
