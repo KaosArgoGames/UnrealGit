@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Actor/CodeWeapon.h"
+#include "Art/RifleAnim.h"
 #include "GameFramework/Character.h"
 #include "PlayerChar.generated.h"
 
@@ -15,6 +16,7 @@ public:
 	// Sets default values for this character's properties
 	APlayerChar();
 	ACodeWeapon* Child;
+	URifleAnim* Anim;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;	

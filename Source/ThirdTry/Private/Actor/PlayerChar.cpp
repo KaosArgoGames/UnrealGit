@@ -18,7 +18,8 @@ APlayerChar::APlayerChar()
 void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
-	Child = Cast<ACodeWeapon>(WeaponChildActor);
+	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
+	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 }
 
 // Called every frame
@@ -38,6 +39,10 @@ void APlayerChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 void APlayerChar::Attack()
 {
 	UE_LOG(Game, Warning, TEXT("Didn't Crash"));
+	if (nullptr != Anim)
+	{
+		Anim->PersonaUpdate();
+	}
 	Child->Attack();
 }
 
