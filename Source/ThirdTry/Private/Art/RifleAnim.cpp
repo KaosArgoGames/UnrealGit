@@ -8,16 +8,26 @@
 URifleAnim::URifleAnim()
 {
 
-	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>Asset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Fire_Ironsights.A_Fire_Ironsights'"));
-	if (nullptr != Asset.Object)
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>ShootAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Fire_Ironsights.A_Fire_Ironsights'"));
+	if (nullptr != ShootAsset.Object)
 	{
 		UE_LOG(Game, Warning, TEXT("Animation found"));
-		Animation = Asset.Object;
+		ShootAnim = ShootAsset.Object;
 	}
 	else
 	{
 		UE_LOG(Game, Warning, TEXT("Animation Not Found"));
 	}
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>HurtAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));
+		if (nullptr != HurtAsset.Object)
+		{
+			UE_LOG(Game, Warning, TEXT("Animation found"));
+			HurtAnim = HurtAsset.Object;
+		}
+		else
+		{
+			UE_LOG(Game, Warning, TEXT("Animation Not Found"));
+		}
 }
 
 void URifleAnim::NativeUpdateAnimation(float DeltaSeconds)
@@ -33,19 +43,23 @@ void URifleAnim::NativeUpdateAnimation(float DeltaSeconds)
 		Speed = velocity.Size();
 		Direction = CalculateDirection(velocity, rotation);
 	}
-
-	if (shoot)
-	{
-		URifleAnim::PersonaUpdate();
-	}
 }
 
-void URifleAnim::PersonaUpdate()
+void URifleAnim::PersonUpdate_Implementation(int Choice)
 {
 	UE_LOG(Game, Error, TEXT("Shoot is True"));
 
-	//PlaySlotAnimation(Animation, "Attack");
-	PlaySlotAnimationAsDynamicMontage(Animation, FName("Action"));
+	switch (Choice)
+	{
+	case 0:
+		PlaySlotAnimationAsDynamicMontage(ShootAnim, FName("Action"));
+		break;
+	case 1:
+		PlaySlotAnimationAsDynamicMontage(HurtAnim, FName("Action"));
+		break;
+	default:
+		break;
+	}	
 
 	shoot = false;
 }

@@ -15,7 +15,6 @@ AC_Player::AC_Player()
 	camera = CreateDefaultSubobject<UCameraComponent>("camera");
 	WeaponChildActor = CreateDefaultSubobject<UChildActorComponent>("WeaponChildActor");
 
-
 	//Attach Components
 	cameraMount->SetupAttachment(RootComponent);
 	camera->SetupAttachment(cameraMount, USpringArmComponent::SocketName);
@@ -42,6 +41,7 @@ void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveRight", this, &AC_Player::MoveRight);
 	//Combat
 	PlayerInputComponent->BindAction("StandardAttack", EInputEvent::IE_Pressed, this, &AC_Player::Attack);
+	
 }
 void AC_Player::MoveForward(float AxisValue)
 {

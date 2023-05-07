@@ -3,7 +3,8 @@
 
 #include "Actor/CodeBullet.h"
 #include "../../ThirdTry.h"
-#include <string>
+#include <Kismet/GameplayStatics.h>
+
 
 // Sets default values
 ACodeBullet::ACodeBullet()
@@ -24,7 +25,7 @@ ACodeBullet::ACodeBullet()
 	SphereCollision->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 	Sphere->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 	TimeToDestroy = 5.0f;
-	TimeToAllowCollision = .25f;
+	BaseDamage = 1.0f;
 }
 
 // Called when the game starts or when spawned
@@ -32,7 +33,6 @@ void ACodeBullet::BeginPlay()
 {
 	Super::BeginPlay();
 	GetWorld()->GetTimerManager().SetTimer(timer, this, &ACodeBullet::K2_DestroyActor, TimeToDestroy);
-	GetWorld()->GetTimerManager().SetTimer(timer, this, &ACodeBullet::K2_DestroyActor, TimeToAllowCollision);
 }
 
 void ACodeBullet::K2_DestroyActor()
@@ -47,17 +47,12 @@ void ACodeBullet::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ACodeBullet::AllowCollision()
-{
-	allowCollision = true;
-}
-
 void ACodeBullet::BoundFunction(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(Game, Error, TEXT("Hit Object"));
-	if (allowCollision && OtherActor != this)
-	{
-		ACodeBullet::K2_DestroyActor();
-	}
+	
+	UGameplayStatics::ApplyDamage(OtherActor, BaseDamage, GetInstigatorController(), GetInstigator(), 0);
+
+	ACodeBullet::K2_DestroyActor();
 }
 

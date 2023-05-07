@@ -32,7 +32,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	float TimeToDestroy;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
-	float TimeToAllowCollision;
+	float BaseDamage;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

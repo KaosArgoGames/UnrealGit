@@ -6,6 +6,9 @@
 #include "Actor/CodeWeapon.h"
 #include "Art/RifleAnim.h"
 #include "GameFramework/Character.h"
+#include <Components/CodeHealthComponent.h>
+
+
 #include "PlayerChar.generated.h"
 
 UCLASS()
@@ -16,7 +19,8 @@ public:
 	// Sets default values for this character's properties
 	APlayerChar();
 	ACodeWeapon* Child;
-	URifleAnim* Anim;
+	URifleAnim* Anim;/*
+	UCodeHealthComponent* Health;*/
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;	
@@ -26,6 +30,8 @@ protected:
 	TSubclassOf<AActor> WeaponClass;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	UObject* Weapon;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	UCodeHealthComponent* Health;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -35,4 +41,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Function")
 		void Attack();
+	UFUNCTION(BlueprintCallable, Category = "Function")
+		void TakeDamage(float Damage);
 };

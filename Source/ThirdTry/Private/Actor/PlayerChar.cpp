@@ -12,6 +12,7 @@ APlayerChar::APlayerChar()
 	GetMesh()->SetWorldRotation(FRotator(0.0f, -90.0f, 0.0f));
 	GetMesh()->SetWorldLocation(FVector(0.0f, 0.0f, -90.0f));
 	GetMesh()->SetWorldScale3D(FVector(0.95f, 0.95f, 0.95f));
+	Health = CreateDefaultSubobject<UCodeHealthComponent>("Health");
 }
 
 // Called when the game starts or when spawned
@@ -41,8 +42,17 @@ void APlayerChar::Attack()
 	UE_LOG(Game, Warning, TEXT("Didn't Crash"));
 	if (nullptr != Anim)
 	{
-		Anim->PersonaUpdate();
+		Anim->PersonUpdate(0);
 	}
 	Child->Attack();
+}
+
+void APlayerChar::TakeDamage(float Damage)
+{
+	if (nullptr != Anim)
+	{
+		Anim->PersonUpdate(1);
+
+	}
 }
 

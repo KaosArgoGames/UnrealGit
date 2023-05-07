@@ -15,7 +15,8 @@ class THIRDTRY_API URifleAnim : public UAnimInstance
 	GENERATED_BODY()
 protected:
 	URifleAnim();
-	UAnimSequenceBase* Animation;
+	UAnimSequenceBase* ShootAnim;
+	UAnimSequenceBase* HurtAnim;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	float Speed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
@@ -24,6 +25,7 @@ protected:
 public:
 	bool shoot = false;
 	void NativeUpdateAnimation(float DeltaSeconds) override;
-	UFUNCTION(BlueprintCallable, Category = "Function")
-	void PersonaUpdate();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default") 
+	void PersonUpdate(int Choice);
+	virtual void PersonUpdate_Implementation(int Choice);
 };
