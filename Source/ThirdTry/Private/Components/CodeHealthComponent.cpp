@@ -3,6 +3,7 @@
 
 #include "Components/CodeHealthComponent.h"
 #include "../../ThirdTry.h"
+#include <Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h>
 
 // Sets default values for this component's properties
 UCodeHealthComponent::UCodeHealthComponent()
@@ -22,8 +23,8 @@ void UCodeHealthComponent::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
+	GetOwner()->OnTakeAnyDamage.AddDynamic(this, &UCodeHealthComponent::HandleDamage);
 	UCodeHealthComponent::InitHealth();
-	OnDamage.AddDynamic(this, &UCodeHealthComponent::HandleDamage);
 }
 
 
@@ -40,23 +41,21 @@ void UCodeHealthComponent::InitHealth()
 	CurrentHealth = MaxHealth;
 }
 
-void UCodeHealthComponent::HandleDamage(float damage)
+void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
 {
 	UE_LOG(Game, Warning, TEXT("Took Damage"));
-	CurrentHealth -= damage;
-	if (0.0f > CurrentHealth)
-	{
-		CurrentHealth = 0.0f;
-		OnDamage.RemoveDynamic(this, &UCodeHealthComponent::HandleDamage);
-	}
-	else if (MaxHealth < CurrentHealth)
-	{
-		CurrentHealth = MaxHealth;
-	}
-	else
-	{
-		OnDamage.Broadcast(CurrentHealth);
-	}
+	float temp = CurrentHealth;
+	temp -= Damage;
+	temp = FMath::Clamp(temp, 0.0f, MaxHealth);
 
+	CurrentHealth = temp;
+
+	OnDamage.Broadcast(CurrentHealth);
+	UKismetSystemLibrary::PrintString(GetWorld(), FString(L"Current Health  = %f", CurrentHealth));
+
+	if (CurrentHealth == 0)
+	{
+		UE_LOG(Game, Warning, TEXT("Health Component Detatched"))
+		GetOwner()->OnTakeAnyDamage.RemoveDynamic(this, &UCodeHealthComponent::HandleDamage);
+	}
 }
-

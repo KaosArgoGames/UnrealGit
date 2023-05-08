@@ -28,17 +28,17 @@ protected:
 	UChildActorComponent* WeaponChildActor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	TSubclassOf<AActor> WeaponClass;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
-	UObject* Weapon;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	//UObject* Weapon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	UCodeHealthComponent* Health;
+
+	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 	UFUNCTION(BlueprintCallable, Category = "Function")
 		void Attack();
 	UFUNCTION(BlueprintCallable, Category = "Function")

@@ -20,10 +20,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera");
 	class UCameraComponent* camera;
 
+	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 	void MoveForward(float AxisValue);
 	void MoveRight(float AxisValue);
-	void Attack();
 public:
 	AC_Player();
-	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 };

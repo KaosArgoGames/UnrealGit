@@ -9,7 +9,6 @@
 //Delegates
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDamaged, float, Damage);
 
-
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class THIRDTRY_API UCodeHealthComponent : public UActorComponent
 {
@@ -29,7 +28,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void InitHealth();
 	UFUNCTION()
-	void HandleDamage(float damage);
+	void HandleDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Default")
 	FOnDamaged OnDamage;

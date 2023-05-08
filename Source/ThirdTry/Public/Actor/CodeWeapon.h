@@ -23,7 +23,6 @@ protected:
 	USkeletalMeshComponent* Skeleton;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	TSubclassOf<AActor> Bullet;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
