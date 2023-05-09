@@ -12,7 +12,7 @@ UCodeHealthComponent::UCodeHealthComponent()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
 
-	UCodeHealthComponent::InitHealth();
+
 	// ...
 }
 
@@ -51,7 +51,12 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 	CurrentHealth = temp;
 
 	OnDamage.Broadcast(CurrentHealth);
-	UKismetSystemLibrary::PrintString(GetWorld(), FString(L"Current Health  = %f", CurrentHealth));
+
+	FString outCurHealth = FString::SanitizeFloat(CurrentHealth);
+	FString tempTwo = "Current Health = ";
+	tempTwo.Append(outCurHealth);
+
+	UKismetSystemLibrary::PrintString(GetWorld(), tempTwo);
 
 	if (CurrentHealth == 0)
 	{

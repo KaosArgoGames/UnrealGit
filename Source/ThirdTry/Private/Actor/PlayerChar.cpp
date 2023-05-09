@@ -27,10 +27,14 @@ APlayerChar::APlayerChar()
 void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
+	//Casting
 	WeaponChildActor->SetChildActorClass(WeaponClass);
-	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
 	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
+
+	//Binding
+	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
+
 }
 
 // Called every frame
