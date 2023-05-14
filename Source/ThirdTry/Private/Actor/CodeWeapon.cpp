@@ -33,31 +33,17 @@ void ACodeWeapon::Tick(float DeltaTime)
 
 void ACodeWeapon::Attack()
 {
-	if (ACodeWeapon::CanShoot())
+	FVector loc = Skeleton->GetSocketLocation("MuzzleFlashSocket");
+	FRotator rot = Skeleton->GetSocketRotation("MuzzleFlashSocket");
+	FActorSpawnParameters param;
+	if (nullptr == Bullet)
 	{
-		FVector loc = Skeleton->GetSocketLocation("MuzzleFlashSocket");
-		FRotator rot = Skeleton->GetSocketRotation("MuzzleFlashSocket");
-		FActorSpawnParameters param;
-		if (nullptr == Bullet)
-		{
-			UE_LOG(Game, Error, TEXT("Object is Nullptr in CodeWeapon.cpp"));
-		}
-		else
-		{
-			AActor* Actor = GetWorld()->SpawnActor<AActor>(Bullet, loc, rot);
-		}
-		UE_LOG(Game, Warning, TEXT("Didn't Crash inside of Code Weapon"));
-		canShoot = false;
+		UE_LOG(Game, Error, TEXT("Object is Nullptr in CodeWeapon.cpp"));
 	}
-}
-
-bool ACodeWeapon::CanShoot()
-{
-	return canShoot;
-}
-
-void ACodeWeapon::ResetShoot()
-{
-	canShoot = true;
+	else
+	{
+		AActor* Actor = GetWorld()->SpawnActor<AActor>(Bullet, loc, rot);
+	}
+	UE_LOG(Game, Warning, TEXT("Didn't Crash inside of Code Weapon"));
 }
 

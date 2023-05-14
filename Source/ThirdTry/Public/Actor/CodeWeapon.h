@@ -23,16 +23,10 @@ protected:
 	USkeletalMeshComponent* Skeleton;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	TSubclassOf<AActor> Bullet;
-
-
-	bool canShoot = true;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION(BlueprintCallable, Category = "Function")
 	void Attack();
-	UFUNCTION(BluePrintCallable, Category = "Function")
-	bool CanShoot();
-	UFUNCTION(BlueprintCallable, Category = "Function")
-	void ResetShoot();
+
 };
