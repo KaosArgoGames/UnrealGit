@@ -60,6 +60,7 @@ void URifleAnim::PersonUpdate_Implementation(int Choice)
 	default:
 		break;
 	}	
+<<<<<<< Updated upstream
 }
 
 void URifleAnim::AttackAnim_Implementation()
@@ -71,3 +72,8 @@ void URifleAnim::DamageAnim_Implementation()
 {
 	PlaySlotAnimationAsDynamicMontage(HurtAnim, FName("Action"));
 }
+=======
+
+	shoot = false;
+}
+>>>>>>> Stashed changes

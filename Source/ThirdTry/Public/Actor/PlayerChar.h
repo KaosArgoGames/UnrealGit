@@ -19,8 +19,7 @@ public:
 	// Sets default values for this character's properties
 	APlayerChar();
 	ACodeWeapon* Child;
-	URifleAnim* Anim;/*
-	UCodeHealthComponent* Health;*/
+	URifleAnim* Anim;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;	
@@ -28,8 +27,6 @@ protected:
 	UChildActorComponent* WeaponChildActor;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	TSubclassOf<AActor> WeaponClass;
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
-	//UObject* Weapon;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	UCodeHealthComponent* Health;
 

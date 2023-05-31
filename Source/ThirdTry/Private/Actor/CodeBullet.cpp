@@ -23,7 +23,6 @@ ACodeBullet::ACodeBullet()
 	Sphere->SetStaticMesh(Asset.Object);
 	SphereCollision->OnComponentBeginOverlap.AddDynamic(this, &ACodeBullet::BoundFunction);
 	SphereCollision->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
-	Sphere->SetWorldScale3D(FVector(0.6f, 0.6f, 0.6f));
 	TimeToDestroy = 5.0f;
 	BaseDamage = 1.0f;
 }
