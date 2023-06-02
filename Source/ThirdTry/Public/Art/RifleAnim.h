@@ -4,11 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "RifleAnimNotify.h"
 #include "RifleAnim.generated.h"
-
 /**
  * 
  */
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnResetShoot, bool, resetShoot);
+
 UCLASS()
 class THIRDTRY_API URifleAnim : public UAnimInstance
 {
@@ -28,4 +30,14 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default") 
 	void PersonUpdate(int Choice);
 	virtual void PersonUpdate_Implementation(int Choice);
+
+	
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default")
+	void AttackAnim();
+	virtual void AttackAnim_Implementation();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default")
+	void DamageAnim();
+	virtual void DamageAnim_Implementation();
+	FOnResetShoot OnResetShoot;
 };

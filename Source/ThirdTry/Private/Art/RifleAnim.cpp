@@ -52,14 +52,22 @@ void URifleAnim::PersonUpdate_Implementation(int Choice)
 	switch (Choice)
 	{
 	case 0:
-		PlaySlotAnimationAsDynamicMontage(ShootAnim, FName("Action"));
+		URifleAnim::AttackAnim_Implementation();
 		break;
 	case 1:
-		PlaySlotAnimationAsDynamicMontage(HurtAnim, FName("Action"));
+		URifleAnim::DamageAnim_Implementation();
 		break;
 	default:
 		break;
 	}	
+}
 
-	shoot = false;
+void URifleAnim::AttackAnim_Implementation()
+{
+	PlaySlotAnimationAsDynamicMontage(ShootAnim, FName("Action"));
+}
+
+void URifleAnim::DamageAnim_Implementation()
+{
+	PlaySlotAnimationAsDynamicMontage(HurtAnim, FName("Damage"));
 }

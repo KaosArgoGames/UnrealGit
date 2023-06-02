@@ -27,17 +27,27 @@ APlayerChar::APlayerChar()
 void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
+	//Casting
 	WeaponChildActor->SetChildActorClass(WeaponClass);
-	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
 	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
+
+	//Binding
+	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
+
+	//On Start Casts
+	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
+	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
+
+	//Add Dynamics
+	Health->OnDamage.AddUniqueDynamic(this, &APlayerChar::TakeDamage);
+	Anim->OnResetShoot.AddDynamic(Child, &ACodeWeapon::ResetShoot);
 }
 
 // Called every frame
 void APlayerChar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input
@@ -48,12 +58,15 @@ void APlayerChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void APlayerChar::Attack()
 {
-	UE_LOG(Game, Warning, TEXT("Didn't Crash"));
-	if (nullptr != Anim)
+	if (Child->CanShoot())
 	{
-		Anim->PersonUpdate(0);
+		UE_LOG(Game, Warning, TEXT("Didn't Crash"));
+		if (nullptr != Anim)
+		{
+			Anim->PersonUpdate(0);
+		}
+		Child->Attack();
 	}
-	Child->Attack();
 }
 
 void APlayerChar::TakeDamage(float Damage)
