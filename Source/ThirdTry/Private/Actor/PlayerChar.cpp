@@ -29,23 +29,19 @@ void APlayerChar::BeginPlay()
 	Super::BeginPlay();
 	//Casting
 	WeaponChildActor->SetChildActorClass(WeaponClass);
-<<<<<<< Updated upstream
 	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 
 	//Binding
 	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
 
-=======
-
 	//On Start Casts
 	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 
 	//Add Dynamics
-	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
+	Health->OnDamage.AddUniqueDynamic(this, &APlayerChar::TakeDamage);
 	Anim->OnResetShoot.AddDynamic(Child, &ACodeWeapon::ResetShoot);
->>>>>>> Stashed changes
 }
 
 // Called every frame

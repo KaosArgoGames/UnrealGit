@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include <Art/RifleAnim.h>
 #include "Art/Notify/C_ShootEnd.h"
+#include <Art/RifleAnim.h>
 
 void UC_ShootEnd::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {

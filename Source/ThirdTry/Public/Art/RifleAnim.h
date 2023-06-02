@@ -6,15 +6,10 @@
 #include "Animation/AnimInstance.h"
 #include "RifleAnimNotify.h"
 #include "RifleAnim.generated.h"
-
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnActionEnded, bool, End);
 /**
  * 
  */
-<<<<<<< Updated upstream
-=======
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnResetShoot, bool, resetShoot);
->>>>>>> Stashed changes
 
 UCLASS()
 class THIRDTRY_API URifleAnim : public UAnimInstance
@@ -30,13 +25,13 @@ protected:
 	float Direction;
 
 public:
-	FOnActionEnded OnActionEnded;
 	bool shoot = false;
 	void NativeUpdateAnimation(float DeltaSeconds) override;
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default") 
 	void PersonUpdate(int Choice);
 	virtual void PersonUpdate_Implementation(int Choice);
-<<<<<<< Updated upstream
+
+	
 
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default")
 	void AttackAnim();
@@ -44,7 +39,5 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default")
 	void DamageAnim();
 	virtual void DamageAnim_Implementation();
-=======
 	FOnResetShoot OnResetShoot;
->>>>>>> Stashed changes
 };

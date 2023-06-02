@@ -29,21 +29,17 @@ void ACodeWeapon::BeginPlay()
 void ACodeWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ACodeWeapon::Attack()
 {
-<<<<<<< Updated upstream
-	if (ACodeWeapon::CanShoot())
-	{
-=======
 	if (canShoot)
 	{
 		canShoot = false;
->>>>>>> Stashed changes
-		FVector loc = Skeleton->GetSocketLocation("MuzzleFlashSocket");
-		FRotator rot = Skeleton->GetSocketRotation("MuzzleFlashSocket");
+
+		loc = Skeleton->GetSocketLocation("MuzzleFlashSocket");
+		rot = Skeleton->GetSocketRotation("MuzzleFlashSocket");
+
 		FActorSpawnParameters param;
 		if (nullptr == Bullet)
 		{
@@ -54,10 +50,6 @@ void ACodeWeapon::Attack()
 			AActor* Actor = GetWorld()->SpawnActor<AActor>(Bullet, loc, rot);
 		}
 		UE_LOG(Game, Warning, TEXT("Didn't Crash inside of Code Weapon"));
-<<<<<<< Updated upstream
-		canShoot = false;
-	}
-=======
 	}
 	else
 	{
@@ -67,20 +59,11 @@ void ACodeWeapon::Attack()
 
 void ACodeWeapon::ResetShoot(bool shoot)
 {
-	canShoot = true;
->>>>>>> Stashed changes
+	canShoot = shoot;
 }
 
 bool ACodeWeapon::CanShoot()
 {
 	return canShoot;
-<<<<<<< Updated upstream
-}
-
-void ACodeWeapon::ResetShoot()
-{
-	canShoot = true;
-=======
->>>>>>> Stashed changes
 }
 

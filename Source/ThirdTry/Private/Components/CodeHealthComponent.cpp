@@ -52,18 +52,11 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 
 	OnDamage.Broadcast(CurrentHealth);
 
-<<<<<<< Updated upstream
 	FString outCurHealth = FString::SanitizeFloat(CurrentHealth);
 	FString tempTwo = "Current Health = ";
 	tempTwo.Append(outCurHealth);
 
 	UKismetSystemLibrary::PrintString(GetWorld(), tempTwo);
-=======
-	FString outHealth = "Current Health = ";
-	outHealth.AppendInt(CurrentHealth);
-
-	UKismetSystemLibrary::PrintString(GetWorld(), outHealth);
->>>>>>> Stashed changes
 
 	if (CurrentHealth == 0)
 	{

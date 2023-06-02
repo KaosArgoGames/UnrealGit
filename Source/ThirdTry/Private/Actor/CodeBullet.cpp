@@ -25,6 +25,9 @@ ACodeBullet::ACodeBullet()
 	SphereCollision->SetWorldScale3D(FVector(0.2f, 0.2f, 0.2f));
 	TimeToDestroy = 5.0f;
 	BaseDamage = 1.0f;
+
+	Move->InitialSpeed = 10000;
+	Move->MaxSpeed = 20000;
 }
 
 // Called when the game starts or when spawned
