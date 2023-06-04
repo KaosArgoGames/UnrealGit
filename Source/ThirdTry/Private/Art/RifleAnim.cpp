@@ -64,10 +64,10 @@ void URifleAnim::PersonUpdate_Implementation(int Choice)
 
 void URifleAnim::AttackAnim_Implementation()
 {
-	PlaySlotAnimationAsDynamicMontage(ShootAnim, FName("Action"));
+	PlaySlotAnimation(ShootAnim, FName("Action"));
 }
 
 void URifleAnim::DamageAnim_Implementation()
 {
-	PlaySlotAnimationAsDynamicMontage(HurtAnim, FName("Damage"));
+	PlaySlotAnimation(HurtAnim, FName("Damage"));
 }

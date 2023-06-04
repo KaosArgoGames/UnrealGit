@@ -63,7 +63,7 @@ void APlayerChar::Attack()
 		UE_LOG(Game, Warning, TEXT("Didn't Crash"));
 		if (nullptr != Anim)
 		{
-			Anim->PersonUpdate(0);
+			Anim->AttackAnim_Implementation();
 		}
 		Child->Attack();
 	}
@@ -75,7 +75,7 @@ void APlayerChar::TakeDamage(float Damage)
 
 	if (nullptr != Anim)
 	{
-		Anim->PersonUpdate(1);
+		Anim->DamageAnim_Implementation();
 	}
 }
 

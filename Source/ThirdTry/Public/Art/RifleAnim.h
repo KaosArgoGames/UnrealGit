@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
-#include "RifleAnimNotify.h"
 #include "RifleAnim.generated.h"
 /**
  * 
