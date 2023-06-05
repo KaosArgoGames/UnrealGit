@@ -29,6 +29,7 @@ URifleAnim::URifleAnim()
 	{
 		UE_LOG(Game, Warning, TEXT("Animation Not Found"));
 	}
+
 }
 
 void URifleAnim::NativeUpdateAnimation(float DeltaSeconds)
