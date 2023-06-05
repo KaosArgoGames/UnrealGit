@@ -8,26 +8,27 @@
 URifleAnim::URifleAnim()
 {
 
-	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>ShootAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Fire_Ironsights.A_Fire_Ironsights'"));
-	if (nullptr != ShootAsset.Object)
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>GetAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Fire_Ironsights.A_Fire_Ironsights'"));
+	if (nullptr != GetAsset.Object)
 	{
 		UE_LOG(Game, Warning, TEXT("Animation found"));
-		ShootAnim = ShootAsset.Object;
+		ShootAnim = GetAsset.Object;
+	}
+	else
+	{
+		UE_LOG(Game, Warning, TEXT("Animation Not Found"));
+	}/*
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>HurtAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));*/
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>GetAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));
+	if (nullptr != GetAsset.Object)
+	{
+		UE_LOG(Game, Warning, TEXT("Animation found"));
+		HurtAnim = GetAsset.Object;
 	}
 	else
 	{
 		UE_LOG(Game, Warning, TEXT("Animation Not Found"));
 	}
-	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>HurtAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));
-		if (nullptr != HurtAsset.Object)
-		{
-			UE_LOG(Game, Warning, TEXT("Animation found"));
-			HurtAnim = HurtAsset.Object;
-		}
-		else
-		{
-			UE_LOG(Game, Warning, TEXT("Animation Not Found"));
-		}
 }
 
 void URifleAnim::NativeUpdateAnimation(float DeltaSeconds)

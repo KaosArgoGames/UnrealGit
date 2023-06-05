@@ -18,6 +18,10 @@ protected:
 	URifleAnim();
 	UAnimSequenceBase* ShootAnim;
 	UAnimSequenceBase* HurtAnim;
+	UAnimSequenceBase* CurDeathAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	TArray<UAnimSequenceBase*> DeathAnims;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	float Speed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
