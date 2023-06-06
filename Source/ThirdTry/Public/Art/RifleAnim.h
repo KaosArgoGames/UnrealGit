@@ -19,6 +19,7 @@ protected:
 	UAnimSequenceBase* ShootAnim;
 	UAnimSequenceBase* HurtAnim;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");	int32 deathNum = -1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");	bool dead = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")	UAnimSequenceBase* CurDeathAnim;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")	TArray<UAnimSequenceBase*> DeathAnims;
 

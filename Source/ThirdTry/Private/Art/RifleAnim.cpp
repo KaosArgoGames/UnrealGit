@@ -94,6 +94,6 @@ void URifleAnim::DamageAnim_Implementation()
 
 void URifleAnim::DeathAnim()
 {
-	deathNum = 0;
+	dead = true;
 	CurDeathAnim = DeathAnims[FMath::RandRange(0, DeathAnims.Num())];
 }
