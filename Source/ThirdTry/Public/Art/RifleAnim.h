@@ -18,14 +18,12 @@ protected:
 	URifleAnim();
 	UAnimSequenceBase* ShootAnim;
 	UAnimSequenceBase* HurtAnim;
-	UAnimSequenceBase* CurDeathAnim;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
-	TArray<UAnimSequenceBase*> DeathAnims;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");	int32 deathNum = -1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")	UAnimSequenceBase* CurDeathAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")	TArray<UAnimSequenceBase*> DeathAnims;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
-	float Speed;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
-	float Direction;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")	float Speed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")	float Direction;
 
 public:
 	bool shoot = false;
@@ -42,5 +40,7 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Default")
 	void DamageAnim();
 	virtual void DamageAnim_Implementation();
+	UFUNCTION(BlueprintCallable, BlueprintCallable, Category = "Default")
+	void DeathAnim();
 	FOnResetShoot OnResetShoot;
 };

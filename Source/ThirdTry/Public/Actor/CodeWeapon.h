@@ -26,6 +26,7 @@ protected:
 
 private:
 	bool canShoot;
+	bool isLive;
 	FVector loc;
 	FRotator rot;
 public:	
@@ -37,4 +38,6 @@ public:
 	bool CanShoot();
 	UFUNCTION(BlueprintCallable, Category = "Function")
 	void ResetShoot(bool shoot);
+	UFUNCTION(BlueprintCallable, Category = "Function")
+	void PawnDied();
 };

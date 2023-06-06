@@ -29,19 +29,21 @@ void APlayerChar::BeginPlay()
 	Super::BeginPlay();
 	//Casting
 	WeaponChildActor->SetChildActorClass(WeaponClass);
-	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
+	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 
 	//Binding
 	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
 
 	//On Start Casts
-	Child = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
+	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 
 	//Add Dynamics
 	Health->OnDamage.AddUniqueDynamic(this, &APlayerChar::TakeDamage);
-	Anim->OnResetShoot.AddDynamic(Child, &ACodeWeapon::ResetShoot);
+	Health->OnDeath.AddUniqueDynamic(Anim, &URifleAnim::DeathAnim);
+	Health->OnDeath.AddUniqueDynamic(Weapon, &ACodeWeapon::PawnDied);
+	Anim->OnResetShoot.AddDynamic(Weapon, &ACodeWeapon::ResetShoot);
 }
 
 // Called every frame
@@ -58,14 +60,14 @@ void APlayerChar::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 void APlayerChar::Attack()
 {
-	if (Child->CanShoot())
+	if (Weapon->CanShoot())
 	{
 		UE_LOG(Game, Warning, TEXT("Didn't Crash"));
 		if (nullptr != Anim)
 		{
 			Anim->AttackAnim_Implementation();
 		}
-		Child->Attack();
+		Weapon->Attack();
 	}
 }
 

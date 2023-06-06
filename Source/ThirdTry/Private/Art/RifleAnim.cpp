@@ -11,25 +11,43 @@ URifleAnim::URifleAnim()
 	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>GetAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Fire_Ironsights.A_Fire_Ironsights'"));
 	if (nullptr != GetAsset.Object)
 	{
-		UE_LOG(Game, Warning, TEXT("Animation found"));
+		UE_LOG(Game, Warning, TEXT("Shoot Animation found"));
 		ShootAnim = GetAsset.Object;
 	}
 	else
 	{
-		UE_LOG(Game, Warning, TEXT("Animation Not Found"));
-	}/*
-	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>HurtAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));*/
-	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>GetAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));
+		UE_LOG(Game, Warning, TEXT("Shoot Animation Not Found"));
+	}
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>HurtAsset(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Hit_Ironsights.A_Hit_Ironsights'"));
 	if (nullptr != GetAsset.Object)
 	{
-		UE_LOG(Game, Warning, TEXT("Animation found"));
+		UE_LOG(Game, Warning, TEXT("Hurt Animation found"));
 		HurtAnim = GetAsset.Object;
 	}
 	else
 	{
-		UE_LOG(Game, Warning, TEXT("Animation Not Found"));
+		UE_LOG(Game, Warning, TEXT("Hurt Animation Not Found"));
 	}
-
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>DeadAsset1(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Death1_Ironsights.A_Death1_Ironsights'"));
+	static ConstructorHelpers::FObjectFinder<UAnimSequenceBase>DeadAsset2(TEXT("AnimSequence'/Game/END_Starter/Mannequin/A_Death2_Ironsights.A_Death2_Ironsights'"));
+	if (nullptr != DeadAsset1.Object)
+	{
+		UE_LOG(Game, Warning, TEXT("Death Animation 1 found"));
+		DeathAnims.Add(DeadAsset1.Object);
+	}
+	else
+	{
+		UE_LOG(Game, Warning, TEXT("Death Animation 1 Not Found"));
+	}
+	if (nullptr != DeadAsset1.Object)
+	{
+		UE_LOG(Game, Warning, TEXT("Death Animation 2 found"));
+		DeathAnims.Add(DeadAsset2.Object);
+	}
+	else
+	{
+		UE_LOG(Game, Warning, TEXT("Death Animation 2 Not Found"));
+	}
 }
 
 void URifleAnim::NativeUpdateAnimation(float DeltaSeconds)
@@ -72,4 +90,10 @@ void URifleAnim::AttackAnim_Implementation()
 void URifleAnim::DamageAnim_Implementation()
 {
 	PlaySlotAnimation(HurtAnim, FName("Damage"));
+}
+
+void URifleAnim::DeathAnim()
+{
+	deathNum = 0;
+	CurDeathAnim = DeathAnims[FMath::RandRange(0, DeathAnims.Num())];
 }

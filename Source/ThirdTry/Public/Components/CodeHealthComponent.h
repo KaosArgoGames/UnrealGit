@@ -8,6 +8,7 @@
 
 //Delegates
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDamaged, float, Damage);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeath);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class THIRDTRY_API UCodeHealthComponent : public UActorComponent
@@ -32,6 +33,8 @@ public:
 
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Default")
 	FOnDamaged OnDamage;
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Default")
+	FOnDeath OnDeath;
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Default");
 	float CurrentHealth;

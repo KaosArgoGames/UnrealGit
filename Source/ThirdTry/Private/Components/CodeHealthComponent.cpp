@@ -48,9 +48,13 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 	temp -= Damage;
 	temp = FMath::Clamp(temp, 0.0f, MaxHealth);
 
-	CurrentHealth = temp;
 
-	OnDamage.Broadcast(CurrentHealth);
+	if (temp < CurrentHealth)
+	{
+		OnDamage.Broadcast(CurrentHealth);
+	}
+
+	CurrentHealth = temp;
 
 	FString outCurHealth = FString::SanitizeFloat(CurrentHealth);
 	FString tempTwo = "Current Health = ";
@@ -60,7 +64,8 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 
 	if (CurrentHealth == 0)
 	{
-		UE_LOG(Game, Warning, TEXT("Health Component Detatched"))
+		UE_LOG(Game, Warning, TEXT("Health Component Detatched"));
+		OnDeath.Broadcast();
 		GetOwner()->OnTakeAnyDamage.RemoveDynamic(this, &UCodeHealthComponent::HandleDamage);
 	}
 }

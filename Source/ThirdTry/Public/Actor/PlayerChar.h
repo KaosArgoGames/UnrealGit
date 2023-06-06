@@ -18,7 +18,7 @@ class THIRDTRY_API APlayerChar : public ACharacter
 public:
 	// Sets default values for this character's properties
 	APlayerChar();
-	ACodeWeapon* Child;
+	ACodeWeapon* Weapon;
 	URifleAnim* Anim;
 protected:
 	// Called when the game starts or when spawned
