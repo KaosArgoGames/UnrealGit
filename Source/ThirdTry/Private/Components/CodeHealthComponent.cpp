@@ -3,7 +3,6 @@
 
 #include "Components/CodeHealthComponent.h"
 #include "../../ThirdTry.h"
-#include <Runtime/Engine/Classes/Kismet/KismetSystemLibrary.h>
 
 // Sets default values for this component's properties
 UCodeHealthComponent::UCodeHealthComponent()
@@ -59,8 +58,6 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 	FString outCurHealth = FString::SanitizeFloat(CurrentHealth);
 	FString tempTwo = "Current Health = ";
 	tempTwo.Append(outCurHealth);
-
-	UKismetSystemLibrary::PrintString(GetWorld(), tempTwo);
 
 	if (CurrentHealth == 0)
 	{

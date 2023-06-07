@@ -94,6 +94,9 @@ void URifleAnim::DamageAnim_Implementation()
 
 void URifleAnim::DeathAnim()
 {
-	dead = true;
-	CurDeathAnim = DeathAnims[FMath::RandRange(0, DeathAnims.Num())];
+	deathNum = FMath::RandRange(0, DeathAnims.Num() - 1);
+
+	UE_LOG(Game, Warning, TEXT("Current Death Anim = %d"), deathNum);
+
+	CurDeathAnim = DeathAnims[deathNum];
 }
