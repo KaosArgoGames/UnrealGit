@@ -25,6 +25,13 @@ AC_Player::AC_Player()
 	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 90.0f));
 }
 
+
+
+void AC_Player::BeginPlay()
+{
+	Super::BeginPlay();
+}
+
 void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -48,4 +55,10 @@ void AC_Player::MoveRight(float AxisValue)
 	FRotationMatrix MakeRotation = FRotator(0.0f, GetControlRotation().Yaw, 0.0f);
 
 	AddMovementInput(MakeRotation.GetScaledAxis(EAxis::Y), AxisValue);
+}
+
+void AC_Player::HandleDeath()
+{
+	Super::HandleDeath();
+	DisableInput(GetWorld()->GetFirstPlayerController());
 }

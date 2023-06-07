@@ -41,8 +41,7 @@ void APlayerChar::BeginPlay()
 
 	//Add Dynamics
 	Health->OnDamage.AddUniqueDynamic(this, &APlayerChar::TakeDamage);
-	Health->OnDeath.AddUniqueDynamic(Anim, &URifleAnim::DeathAnim);
-	Health->OnDeath.AddUniqueDynamic(Weapon, &ACodeWeapon::PawnDied);
+	Health->OnDeath.AddUniqueDynamic(this, &APlayerChar::HandleDeath);
 	Anim->OnResetShoot.AddDynamic(Weapon, &ACodeWeapon::ResetShoot);
 }
 
@@ -81,3 +80,9 @@ void APlayerChar::TakeDamage(float Damage)
 	}
 }
 
+void APlayerChar::HandleDeath()
+{
+	Anim->DeathAnim();
+	Weapon->PawnDied();
+	
+}

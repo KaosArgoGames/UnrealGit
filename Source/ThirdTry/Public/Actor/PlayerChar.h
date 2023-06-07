@@ -40,4 +40,7 @@ public:
 		void Attack();
 	UFUNCTION(BlueprintCallable, Category = "Function")
 		void TakeDamage(float Damage);
+	UFUNCTION(BlueprintCallable, Category = "Function")
+		void HandleDeath();
+
 };

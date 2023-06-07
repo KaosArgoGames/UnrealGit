@@ -21,6 +21,6 @@ protected:
 	UBoxComponent* collider;
 public:	
 	void Overlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-	void HandlePickup(AActor* OtherActor, TSubclassOf<AActor> SweepResult);
+	void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult);
 	void PostPickup();
 };

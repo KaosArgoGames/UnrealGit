@@ -13,5 +13,6 @@ UCLASS()
 class THIRDTRY_API AC_PickupHealth : public AC_PickupBase
 {
 	GENERATED_BODY()
-	
+public:
+	AC_PickupHealth();
 };

@@ -2,4 +2,8 @@
 
 
 #include "Actor/C_PickupHealth.h"
+#include "../../ThirdTry.h"
 
+AC_PickupHealth::AC_PickupHealth()
+{
+}
