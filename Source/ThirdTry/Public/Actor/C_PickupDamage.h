@@ -16,10 +16,11 @@ class THIRDTRY_API AC_PickupDamage : public AC_PickupBase
 	GENERATED_BODY()
 public:
 	AC_PickupDamage();
-	void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult);
+	void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult) override;
+	void PostPickup() override;
 protected:
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default")
-	class UFXSystemComponent* particle;
+		class UFXSystemComponent* particle;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	float Damage;
 public:

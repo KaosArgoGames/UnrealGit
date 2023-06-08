@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include <Components/BoxComponent.h>
+#include "Particles/ParticleSystemComponent.h"
 #include "C_PickupBase.generated.h"
 
 UCLASS()
@@ -20,7 +21,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
 	UBoxComponent* collider;
 public:	
+	UFUNCTION()
 	void Overlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
-	void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult);
-	void PostPickup();
+	virtual void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult);
+	virtual void PostPickup();
+private:
+	bool CanPickup(AActor* OtherActor);
 };

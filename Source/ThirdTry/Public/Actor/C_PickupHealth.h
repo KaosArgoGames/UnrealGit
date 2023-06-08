@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Actor/C_PickupBase.h"
+#include "Particles/ParticleSystemComponent.h"
 #include "C_PickupHealth.generated.h"
 
 /**
@@ -15,4 +16,11 @@ class THIRDTRY_API AC_PickupHealth : public AC_PickupBase
 	GENERATED_BODY()
 public:
 	AC_PickupHealth();
+	void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult) override;
+protected:
+	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Default")
+		class UFXSystemComponent* particle;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+		float Healing;
+private:
 };

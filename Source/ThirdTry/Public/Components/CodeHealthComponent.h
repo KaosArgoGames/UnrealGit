@@ -30,7 +30,8 @@ public:
 	void InitHealth();
 	UFUNCTION()
 	void HandleDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
-
+	UFUNCTION()
+	bool IsFullHealth();
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Default")
 	FOnDamaged OnDamage;
 	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category = "Default")

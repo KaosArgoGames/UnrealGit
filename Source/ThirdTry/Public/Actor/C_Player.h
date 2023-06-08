@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Actor/PlayerChar.h"
+#include "../Interface/C_PickupInterface.h"
 #include "C_Player.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class THIRDTRY_API AC_Player : public APlayerChar
+class THIRDTRY_API AC_Player : public APlayerChar, IC_PickupInterface
 {
 	GENERATED_BODY()
 
@@ -28,4 +29,6 @@ protected:
 	void HandleDeath();
 public:
 	AC_Player();
+private:
+	bool ShouldPickup();
 };

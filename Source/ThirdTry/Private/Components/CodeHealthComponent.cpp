@@ -66,3 +66,15 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 		GetOwner()->OnTakeAnyDamage.RemoveDynamic(this, &UCodeHealthComponent::HandleDamage);
 	}
 }
+
+bool UCodeHealthComponent::IsFullHealth()
+{
+	if (CurrentHealth / MaxHealth > 0.99)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}

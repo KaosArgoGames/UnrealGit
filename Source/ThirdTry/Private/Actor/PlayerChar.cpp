@@ -84,5 +84,4 @@ void APlayerChar::HandleDeath()
 {
 	Anim->DeathAnim();
 	Weapon->PawnDied();
-	
 }
