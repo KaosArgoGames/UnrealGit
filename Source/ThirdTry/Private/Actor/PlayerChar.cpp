@@ -32,15 +32,12 @@ void APlayerChar::BeginPlay()
 	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 
-	//Binding
-	Health->OnDamage.AddDynamic(this, &APlayerChar::TakeDamage);
-
 	//On Start Casts
 	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 
 	//Add Dynamics
-	Health->OnDamage.AddUniqueDynamic(this, &APlayerChar::TakeDamage);
+	Health->OnDamage.AddUniqueDynamic(Anim, &URifleAnim::DamageAnim);
 	Health->OnDeath.AddUniqueDynamic(this, &APlayerChar::HandleDeath);
 	Anim->OnResetShoot.AddDynamic(Weapon, &ACodeWeapon::ResetShoot);
 }
@@ -64,21 +61,21 @@ void APlayerChar::Attack()
 		UE_LOG(Game, Warning, TEXT("Didn't Crash"));
 		if (nullptr != Anim)
 		{
-			Anim->AttackAnim_Implementation();
+			Anim->AttackAnim();
 		}
 		Weapon->Attack();
 	}
 }
-
-void APlayerChar::TakeDamage(float Damage)
-{
-	UE_LOG(Game, Error, TEXT("PlayerChar.cpp Take Damage Called"))
-
-	if (nullptr != Anim)
-	{
-		Anim->DamageAnim_Implementation();
-	}
-}
+//
+//void APlayerChar::TakeDamage(float Damage)
+//{
+//	UE_LOG(Game, Error, TEXT("PlayerChar.cpp Take Damage Called"))
+//
+//	if (nullptr != Anim)
+//	{
+//		Anim->DamageAnim();
+//	}
+//}
 
 void APlayerChar::HandleDeath()
 {

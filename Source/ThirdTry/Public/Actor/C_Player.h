@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class THIRDTRY_API AC_Player : public APlayerChar, IC_PickupInterface
+class THIRDTRY_API AC_Player : public APlayerChar/*, public IC_PickupInterface*/
 {
 	GENERATED_BODY()
 

@@ -16,7 +16,9 @@ class THIRDTRY_API URifleAnim : public UAnimInstance
 	GENERATED_BODY()
 protected:
 	URifleAnim();
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
 	UAnimSequenceBase* ShootAnim;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
 	UAnimSequenceBase* HurtAnim;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");	int32 deathNum = -1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");	bool dead = false;

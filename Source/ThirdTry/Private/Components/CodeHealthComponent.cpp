@@ -50,7 +50,7 @@ void UCodeHealthComponent::HandleDamage(AActor* DamagedActor, float Damage, cons
 
 	if (temp < CurrentHealth)
 	{
-		OnDamage.Broadcast(CurrentHealth);
+		OnDamage.Broadcast();
 	}
 
 	CurrentHealth = temp;

@@ -37,9 +37,9 @@ public:
 
 	// Called to bind functionality to input
 	UFUNCTION(BlueprintCallable, Category = "Function")
-		void Attack();
+		void Attack();/*
 	UFUNCTION(BlueprintCallable, Category = "Function")
-		void TakeDamage(float Damage);
+		void TakeDamage(float Damage);*/
 	UFUNCTION(BlueprintCallable, Category = "Function")
 		void HandleDeath();
 

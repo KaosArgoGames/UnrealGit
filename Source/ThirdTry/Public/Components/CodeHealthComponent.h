@@ -7,7 +7,7 @@
 #include "CodeHealthComponent.generated.h"
 
 //Delegates
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDamaged, float, Damage);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDamaged);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeath);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
