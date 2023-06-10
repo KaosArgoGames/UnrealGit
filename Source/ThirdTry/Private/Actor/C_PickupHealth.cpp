@@ -30,6 +30,7 @@ bool AC_PickupHealth::CanPickup(AActor* OtherActor)
 {
 	APlayerChar* temp = Cast<APlayerChar>(OtherActor);
 
+	if(temp != NULL)
 	if (temp->CanPickup())
 	{
 		return true;

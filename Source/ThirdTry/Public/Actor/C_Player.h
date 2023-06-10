@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Actor/PlayerChar.h"
+#include "Blueprint/UserWidget.h"
+#include "../Widget/C_BaseUserWidget.h"
 #include "C_Player.generated.h"
 
 /**
@@ -19,6 +21,8 @@ protected:
 	class USpringArmComponent* cameraMount;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera");
 	class UCameraComponent* camera;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Default")
+	class UC_BaseUserWidget* HUD;
 
 	void BeginPlay();
 
@@ -31,6 +35,7 @@ public:
 	//Interface Stuff
 	bool CanPickup() override;
 	bool ShouldPickup() override;
+	void SpecialAttack();
 private:
 
 };

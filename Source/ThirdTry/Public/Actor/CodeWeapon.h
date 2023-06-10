@@ -33,7 +33,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION(BlueprintCallable, Category = "Function")
-	void Attack();
+	virtual ACodeBullet* Attack();
+	UFUNCTION(BlueprintCallable, Category = "Default")
+	virtual void SpecialAttack();
 	UFUNCTION(BluePrintCallable, Category = "Function")
 	bool CanShoot();
 	UFUNCTION(BlueprintCallable, Category = "Function")

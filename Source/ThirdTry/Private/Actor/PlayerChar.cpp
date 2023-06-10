@@ -73,6 +73,11 @@ void APlayerChar::HandleDeath()
 	Weapon->PawnDied();
 }
 
+void APlayerChar::SpecialAttack()
+{
+	Weapon->SpecialAttack();
+}
+
 bool APlayerChar::CanPickup()
 {
 	return false;

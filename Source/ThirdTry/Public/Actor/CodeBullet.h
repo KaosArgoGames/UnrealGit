@@ -22,7 +22,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-	void K2_DestroyActor() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	USphereComponent* SphereCollision;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
@@ -33,10 +32,14 @@ protected:
 	float TimeToDestroy;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	float BaseDamage;
+
+	UFUNCTION(BlueprintCallable, Category = "Default")
+	virtual void HandleOverlap(AActor* OtherActor, UPrimitiveComponent* OtherComp, FHitResult SweepResult);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	void AllowCollision();
+	UFUNCTION(BlueprintCallable, Category = "Default")
+	virtual void SpecialAttack();
 private:
 	UFUNCTION(BlueprintCallable, Category = "Function")
 	void BoundFunction(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);

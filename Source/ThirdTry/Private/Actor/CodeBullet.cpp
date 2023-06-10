@@ -34,13 +34,14 @@ ACodeBullet::ACodeBullet()
 void ACodeBullet::BeginPlay()
 {
 	Super::BeginPlay();
-	GetWorld()->GetTimerManager().SetTimer(timer, this, &ACodeBullet::K2_DestroyActor, TimeToDestroy);
+	GetWorld()->GetTimerManager().SetTimer(timer, this, &AActor::K2_DestroyActor, TimeToDestroy);
 }
 
-void ACodeBullet::K2_DestroyActor()
+void ACodeBullet::HandleOverlap(AActor* OtherActor, UPrimitiveComponent* OtherComp, FHitResult SweepResult)
 {
-	UE_LOG(Game, Error, TEXT("Time's Up"));
-	Super::K2_DestroyActor();
+	UGameplayStatics::ApplyDamage(OtherActor, BaseDamage, GetInstigatorController(), GetInstigator(), 0);
+
+	K2_DestroyActor();
 }
 
 // Called every frame
@@ -49,12 +50,14 @@ void ACodeBullet::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void ACodeBullet::SpecialAttack()
+{
+}
+
 void ACodeBullet::BoundFunction(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(Game, Error, TEXT("Hit Object"));
 	
-	UGameplayStatics::ApplyDamage(OtherActor, BaseDamage, GetInstigatorController(), GetInstigator(), 0);
-
-	ACodeBullet::K2_DestroyActor();
+	HandleOverlap(OtherActor, OtherComp, SweepResult);
 }
 

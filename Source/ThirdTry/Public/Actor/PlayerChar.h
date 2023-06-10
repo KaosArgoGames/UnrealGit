@@ -37,12 +37,11 @@ public:
 
 	// Called to bind functionality to input
 	UFUNCTION(BlueprintCallable, Category = "Function")
-		void Attack();/*
+	void Attack();
 	UFUNCTION(BlueprintCallable, Category = "Function")
-		void TakeDamage(float Damage);*/
-	UFUNCTION(BlueprintCallable, Category = "Function")
-		void HandleDeath();
-
+	virtual void HandleDeath();
+	UFUNCTION(BlueprintCallable, Category = "Default")
+	virtual void SpecialAttack();
 
 	//Interface Stuff
 	bool CanPickup() override;

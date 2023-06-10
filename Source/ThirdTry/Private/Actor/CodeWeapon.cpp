@@ -13,8 +13,6 @@ ACodeWeapon::ACodeWeapon()
 	Skeleton = CreateDefaultSubobject<USkeletalMeshComponent>("Skeleton");
 	Skeleton->SetupAttachment(RootComponent);
 
-	static ConstructorHelpers::FObjectFinder<USkeletalMesh>Asset(TEXT("SkeletalMesh'/Game/END_Starter/Guns/Rifle/SK_Rifle.SK_Rifle'"));
-	Skeleton->SetSkeletalMesh(Asset.Object);
 	canShoot = true;
 	isLive = true;
 }
@@ -32,10 +30,11 @@ void ACodeWeapon::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void ACodeWeapon::Attack()
+ACodeBullet* ACodeWeapon::Attack()
 {
 	if(isLive)
 	{
+		ACodeBullet* outVar = NULL;
 		if (canShoot)
 		{
 			canShoot = false;
@@ -43,22 +42,30 @@ void ACodeWeapon::Attack()
 			loc = Skeleton->GetSocketLocation("MuzzleFlashSocket");
 			rot = Skeleton->GetSocketRotation("MuzzleFlashSocket");
 
+
 			FActorSpawnParameters param;
 			if (nullptr == Bullet)
 			{
 				UE_LOG(Game, Error, TEXT("Object is Nullptr in CodeWeapon.cpp"));
+				return outVar;
 			}
 			else
 			{
 				AActor* Actor = GetWorld()->SpawnActor<AActor>(Bullet, loc, rot);
+
+				outVar = Cast<ACodeBullet>(Actor);
+
+				return outVar;
 			}
 			UE_LOG(Game, Warning, TEXT("Didn't Crash inside of Code Weapon"));
 		}
 		else
 		{
 			UE_LOG(Game, Error, TEXT("Blocking Shoot"));
+			return outVar;
 		}
 	}
+	return NULL;
 }
 
 void ACodeWeapon::ResetShoot(bool shoot)
@@ -66,6 +73,10 @@ void ACodeWeapon::ResetShoot(bool shoot)
 	canShoot = shoot;
 }
 
+void ACodeWeapon::SpecialAttack()
+{
+
+}
 
 bool ACodeWeapon::CanShoot()
 {

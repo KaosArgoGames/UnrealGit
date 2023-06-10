@@ -7,6 +7,8 @@
 #include "Components/ChildActorComponent.h"
 #include "../../ThirdTry.h"
 #include <ThirdTry/Public/Actor/CodeWeapon.h>
+#include <Widget/C_BaseUserWidget.h>
+#include <Kismet/GameplayStatics.h>
 
 AC_Player::AC_Player()
 {
@@ -23,6 +25,7 @@ AC_Player::AC_Player()
 	cameraMount->SetRelativeLocationAndRotation(FVector(0.0f, 80.0f, 30.f), FRotator(0.0f, 0.0f, 0.0f));
 	cameraMount->TargetArmLength = 210.0f;
 	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 90.0f));
+
 }
 
 
@@ -30,6 +33,12 @@ AC_Player::AC_Player()
 void AC_Player::BeginPlay()
 {
 	Super::BeginPlay();
+
+	CreateWidget<UC_BaseUserWidget>(GetWorld(), UC_BaseUserWidget::StaticClass())->AddToViewport();/*
+	FInputModeGameAndUI Mode;
+	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture);
+	Mode.SetHideCursorDuringCapture(false);
+	UGameplayStatics::GetPlayerController(GetWorld(), 0)->SetInputMode(Mode);*/
 }
 
 void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -43,6 +52,7 @@ void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis("MoveRight", this, &AC_Player::MoveRight);
 	//Combat
 	PlayerInputComponent->BindAction("StandardAttack", EInputEvent::IE_Pressed, this, &APlayerChar::Attack);
+	PlayerInputComponent->BindAction("SpecialAttack", EInputEvent::IE_Pressed, this, &APlayerChar::SpecialAttack);
 }
 void AC_Player::MoveForward(float AxisValue)
 {
@@ -79,4 +89,9 @@ bool AC_Player::ShouldPickup()
 	{
 		return false;
 	}
+}
+
+void AC_Player::SpecialAttack()
+{
+	Super::SpecialAttack();
 }
