@@ -49,7 +49,9 @@ void URifleAnim::AttackAnim_Implementation()
 
 void URifleAnim::DamageAnim_Implementation()
 {
-	PlaySlotAnimation(HurtAnim, FName("Damage"));
+	hurtNum = FMath::RandRange(0, HurtAnims.Num() - 1);
+
+	PlaySlotAnimation(HurtAnims[hurtNum], FName("Damage"));
 }
 
 void URifleAnim::DeathAnim()

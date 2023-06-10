@@ -27,14 +27,7 @@ APlayerChar::APlayerChar()
 void APlayerChar::BeginPlay()
 {
 	Super::BeginPlay();
-	//Casting
-	WeaponChildActor->SetChildActorClass(WeaponClass);
-	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
-	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
-
-	//On Start Casts
-	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
-	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
+	SetObjectRefs();
 
 	//Add Dynamics
 	Health->OnDamage.AddUniqueDynamic(Anim, &URifleAnim::DamageAnim);
@@ -76,6 +69,31 @@ void APlayerChar::HandleDeath()
 void APlayerChar::SpecialAttack()
 {
 	Weapon->SpecialAttack();
+}
+
+void APlayerChar::SwapWeapon()
+{
+	if (WeaponClass == RifleClass)
+	{
+		WeaponClass = StickyClass;
+	}
+	else
+	{
+		WeaponClass = RifleClass;
+	}
+	SetObjectRefs();
+}
+
+void APlayerChar::SetObjectRefs()
+{
+	//Casting
+	WeaponChildActor->SetChildActorClass(WeaponClass);
+	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
+	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
+
+	//On Start Casts
+	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
+	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
 }
 
 bool APlayerChar::CanPickup()

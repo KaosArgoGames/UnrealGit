@@ -8,6 +8,7 @@
 #include "GameFramework/Character.h"
 #include <Components/CodeHealthComponent.h>
 #include "../Interface/C_PickupInterface.h"
+#include "C_StickyLauncher.h"
 
 #include "PlayerChar.generated.h"
 
@@ -28,6 +29,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	TSubclassOf<AActor> WeaponClass;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	TSubclassOf<ACodeWeapon> RifleClass; 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	TSubclassOf<AC_StickyLauncher> StickyClass;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	UCodeHealthComponent* Health;
 
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
@@ -42,6 +47,10 @@ public:
 	virtual void HandleDeath();
 	UFUNCTION(BlueprintCallable, Category = "Default")
 	virtual void SpecialAttack();
+	UFUNCTION()
+	virtual void SwapWeapon();
+	UFUNCTION()
+	virtual void SetObjectRefs();
 
 	//Interface Stuff
 	bool CanPickup() override;

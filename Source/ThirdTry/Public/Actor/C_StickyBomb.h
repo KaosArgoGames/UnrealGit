@@ -17,4 +17,7 @@ class THIRDTRY_API AC_StickyBomb : public ACodeBullet
 public:
 	void SpecialAttack() override;
 	void HandleOverlap(AActor* OtherActor, UPrimitiveComponent* OtherComp, FHitResult SweepResult) override;
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+		float radius;
 };

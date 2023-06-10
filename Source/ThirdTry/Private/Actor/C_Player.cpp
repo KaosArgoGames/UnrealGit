@@ -53,6 +53,7 @@ void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	//Combat
 	PlayerInputComponent->BindAction("StandardAttack", EInputEvent::IE_Pressed, this, &APlayerChar::Attack);
 	PlayerInputComponent->BindAction("SpecialAttack", EInputEvent::IE_Pressed, this, &APlayerChar::SpecialAttack);
+	PlayerInputComponent->BindAction("SwapWeapons", EInputEvent::IE_Pressed, this, &APlayerChar::SwapWeapon);
 }
 void AC_Player::MoveForward(float AxisValue)
 {

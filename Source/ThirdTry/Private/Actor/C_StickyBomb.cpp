@@ -4,10 +4,14 @@
 #include "Actor/C_StickyBomb.h"
 #include "Engine/EngineTypes.h"
 #include "../../ThirdTry.h"
+#include <Kismet/GameplayStatics.h>
 
 void AC_StickyBomb::SpecialAttack()
 {
 	UE_LOG(Game, Warning, TEXT("Special Attack Called"));
+
+	TArray<AActor*> temp;
+	UGameplayStatics::ApplyRadialDamage(this, BaseDamage, GetActorLocation(), radius, 0, temp, GetInstigator(), GetInstigatorController());
 
 	K2_DestroyActor();
 }
@@ -15,11 +19,6 @@ void AC_StickyBomb::SpecialAttack()
 void AC_StickyBomb::HandleOverlap(AActor* OtherActor, UPrimitiveComponent* OtherComp, FHitResult SweepResult)
 {
 	USkeletalMeshComponent* skelly = Cast<USkeletalMeshComponent>(OtherComp->GetClass());
-
-	if (skelly == NULL)
-	{
-		UE_LOG(Game, Error, TEXT("NULL"));
-	}
 
 	if (skelly != NULL)
 	{
