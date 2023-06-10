@@ -25,3 +25,14 @@ void AC_PickupHealth::HandlePickup(AActor* OtherActor, const FHitResult& SweepRe
 	UE_LOG(Game, Error, TEXT("Healing Character"));
 	UGameplayStatics::ApplyDamage(OtherActor, -Healing, GetInstigatorController(), this, 0);
 }
+
+bool AC_PickupHealth::CanPickup(AActor* OtherActor)
+{
+	APlayerChar* temp = Cast<APlayerChar>(OtherActor);
+
+	if (temp->CanPickup())
+	{
+		return true;
+	}
+	return false;
+}

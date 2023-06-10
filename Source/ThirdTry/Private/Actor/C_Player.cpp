@@ -59,11 +59,15 @@ void AC_Player::MoveRight(float AxisValue)
 
 void AC_Player::HandleDeath()
 {
-	Super::HandleDeath();
 	SetActorEnableCollision(false);
 	DisableInput(GetWorld()->GetFirstPlayerController());
 }
 
+
+bool AC_Player::CanPickup()
+{
+	return ShouldPickup();
+}
 
 bool AC_Player::ShouldPickup()
 {

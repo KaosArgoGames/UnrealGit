@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include <Components/BoxComponent.h>
 #include "Particles/ParticleSystemComponent.h"
+#include "../Interface/C_PickupInterface.h"
+#include "../Actor/PlayerChar.h"
 #include "C_PickupBase.generated.h"
 
 UCLASS()
@@ -26,5 +28,5 @@ public:
 	virtual void HandlePickup(AActor* OtherActor, const FHitResult& SweepResult);
 	virtual void PostPickup();
 private:
-	bool CanPickup(AActor* OtherActor);
+	virtual bool CanPickup(AActor* OtherActor);
 };

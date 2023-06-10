@@ -22,5 +22,7 @@ protected:
 		class UFXSystemComponent* particle;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 		float Healing;
+
+	bool CanPickup(AActor* OtherActor) override;
 private:
 };

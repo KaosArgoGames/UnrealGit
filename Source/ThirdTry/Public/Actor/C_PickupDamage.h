@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Actor/C_PickupBase.h"
 #include "Particles/ParticleSystemComponent.h"
+
 #include "C_PickupDamage.generated.h"
 
 /**

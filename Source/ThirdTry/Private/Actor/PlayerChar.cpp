@@ -66,19 +66,19 @@ void APlayerChar::Attack()
 		Weapon->Attack();
 	}
 }
-//
-//void APlayerChar::TakeDamage(float Damage)
-//{
-//	UE_LOG(Game, Error, TEXT("PlayerChar.cpp Take Damage Called"))
-//
-//	if (nullptr != Anim)
-//	{
-//		Anim->DamageAnim();
-//	}
-//}
 
 void APlayerChar::HandleDeath()
 {
 	Anim->DeathAnim();
 	Weapon->PawnDied();
+}
+
+bool APlayerChar::CanPickup()
+{
+	return false;
+}
+
+bool APlayerChar::ShouldPickup()
+{
+	return false;
 }

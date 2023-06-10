@@ -7,12 +7,12 @@
 #include "Art/RifleAnim.h"
 #include "GameFramework/Character.h"
 #include <Components/CodeHealthComponent.h>
-
+#include "../Interface/C_PickupInterface.h"
 
 #include "PlayerChar.generated.h"
 
 UCLASS()
-class THIRDTRY_API APlayerChar : public ACharacter
+class THIRDTRY_API APlayerChar : public ACharacter, public IC_PickupInterface
 {
 	GENERATED_BODY()
 public:
@@ -43,4 +43,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Function")
 		void HandleDeath();
 
+
+	//Interface Stuff
+	bool CanPickup() override;
+	bool ShouldPickup() override;
 };
