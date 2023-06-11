@@ -12,6 +12,12 @@
 
 #include "PlayerChar.generated.h"
 
+USTRUCT(BlueprintType)
+struct FTestStruct
+{
+	GENERATED_BODY()
+};
+
 UCLASS()
 class THIRDTRY_API APlayerChar : public ACharacter, public IC_PickupInterface
 {
@@ -55,4 +61,7 @@ public:
 	//Interface Stuff
 	bool CanPickup() override;
 	bool ShouldPickup() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
+	FTestStruct test;
 };
