@@ -16,21 +16,33 @@ class THIRDTRY_API UC_BaseUserWidget : public UUserWidget
 	GENERATED_BODY()
 public:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-	class UImage* reticle;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	class UImage* Reticle;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FName color;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FVector destination;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FVector hit;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FLinearColor colorOne;
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FLinearColor colorTwo;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+	class UMaterialInstanceDynamic* dynMat;
+	UPROPERTY()
+	bool hasHit;
 	UFUNCTION()
 	bool GetDest(FVector& shot, FVector& point);
 protected:
 	virtual void NativeConstruct() override;
 	virtual void NativeTick(const FGeometry& Geo, float dTime) override;
-	void ColorChange();
+	void ColorChange(FLinearColor inColor);
+private:
+	FVector2D posPixel;
+	FVector2D posPort;
+	FVector2D size;
+	FVector posGlobal;
+	FVector dirGlobal;
+	FHitResult hitRes;
+	FGeometry geometry;
 };

@@ -34,7 +34,7 @@ void AC_Player::BeginPlay()
 {
 	Super::BeginPlay();
 
-	HUD = CreateWidget<UC_BaseUserWidget>(GetWorld(), UC_BaseUserWidget::StaticClass());
+	HUD = CreateWidget<UC_BaseUserWidget>(GetWorld()->GetFirstPlayerController(), UC_BaseUserWidget::StaticClass());
 	//FInputModeGameAndUI Mode;
 	//Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture);
 	//Mode.SetHideCursorDuringCapture(false);
