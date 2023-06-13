@@ -34,11 +34,12 @@ void AC_Player::BeginPlay()
 {
 	Super::BeginPlay();
 
-	CreateWidget<UC_BaseUserWidget>(GetWorld(), UC_BaseUserWidget::StaticClass())->AddToViewport();/*
-	FInputModeGameAndUI Mode;
-	Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture);
-	Mode.SetHideCursorDuringCapture(false);
-	UGameplayStatics::GetPlayerController(GetWorld(), 0)->SetInputMode(Mode);*/
+	HUD = CreateWidget<UC_BaseUserWidget>(GetWorld(), UC_BaseUserWidget::StaticClass());
+	//FInputModeGameAndUI Mode;
+	//Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture);
+	//Mode.SetHideCursorDuringCapture(false);
+	//UGameplayStatics::GetPlayerController(GetWorld(), 0)->SetInputMode(Mode);
+	HUD->AddToViewport();
 }
 
 void AC_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

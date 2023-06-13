@@ -17,6 +17,20 @@ class THIRDTRY_API UC_BaseUserWidget : public UUserWidget
 public:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UImage* reticle;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FName color;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FVector destination;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FVector hit;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FLinearColor colorOne;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FLinearColor colorTwo;
+	UFUNCTION()
+	bool GetDest(FVector& shot, FVector& point);
 protected:
 	virtual void NativeConstruct() override;
+	virtual void NativeTick(const FGeometry& Geo, float dTime) override;
+	void ColorChange();
 };

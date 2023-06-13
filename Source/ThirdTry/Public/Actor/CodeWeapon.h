@@ -7,6 +7,14 @@
 #include "GameFramework/Actor.h"
 #include "CodeWeapon.generated.h"
 
+USTRUCT(BlueprintType)
+struct FSyncWeapon
+{
+	GENERATED_BODY()
+	bool shootReady;
+	// Something For Animation
+
+};
 UCLASS()
 class THIRDTRY_API ACodeWeapon : public AActor
 {
@@ -42,4 +50,6 @@ public:
 	void ResetShoot(bool shoot);
 	UFUNCTION(BlueprintCallable, Category = "Function")
 	void PawnDied();
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+	FSyncWeapon weaponSync;
 };

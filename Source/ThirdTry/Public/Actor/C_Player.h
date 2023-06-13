@@ -22,7 +22,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera");
 	class UCameraComponent* camera;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Default")
-	class UC_BaseUserWidget* HUD;
+	class UUserWidget* HUD;
 
 	void BeginPlay();
 
