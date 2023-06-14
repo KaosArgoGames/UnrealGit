@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Actor/PlayerChar.h"
-#include "Blueprint/UserWidget.h"
-#include "../Widget/C_BaseUserWidget.h"
 #include "C_Player.generated.h"
 
 /**
@@ -23,6 +21,8 @@ protected:
 	class UCameraComponent* camera;
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Default")
 	class UUserWidget* HUD;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default")
+	TSubclassOf<class UUserWidget> hudClass;
 
 	void BeginPlay();
 

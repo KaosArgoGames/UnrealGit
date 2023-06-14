@@ -19,13 +19,13 @@ void UC_BaseUserWidget::NativeConstruct()
 	Super::NativeConstruct();
 	dynMat = Reticle->GetDynamicMaterial();
 	Reticle->SetBrushFromMaterial(dynMat);
-//	ColorChange(colorOne);
+	ColorChange(colorOne);
 }
 
 void UC_BaseUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
-	/*geometry = Reticle->GetCachedGeometry();
+	geometry = Reticle->GetCachedGeometry();
 	size = geometry.GetAbsoluteSize();
 	size = size / 2.0f;
 
@@ -57,7 +57,7 @@ void UC_BaseUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 	else
 	{
 		ColorChange(colorOne);
-	}*/
+	}
 }
 
 void UC_BaseUserWidget::ColorChange(FLinearColor inColor)

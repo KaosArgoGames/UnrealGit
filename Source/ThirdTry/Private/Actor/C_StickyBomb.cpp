@@ -18,7 +18,7 @@ void AC_StickyBomb::SpecialAttack()
 
 void AC_StickyBomb::HandleOverlap(AActor* OtherActor, UPrimitiveComponent* OtherComp, FHitResult SweepResult)
 {
-	USkeletalMeshComponent* skelly = Cast<USkeletalMeshComponent>(OtherComp->GetClass());
+	USkeletalMeshComponent* skelly = Cast<USkeletalMeshComponent>(OtherComp/*->GetClass()*/);
 
 	if (skelly != NULL)
 	{
@@ -26,8 +26,12 @@ void AC_StickyBomb::HandleOverlap(AActor* OtherActor, UPrimitiveComponent* Other
 	}
 	else
 	{
-		SphereCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldStatic, ECollisionResponse::ECR_Block);
-		Move->StopMovementImmediately();
-		GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+		ECollisionChannel t = OtherComp->GetCollisionObjectType();
+		if (t == ECollisionChannel::ECC_WorldStatic)
+		{
+			SphereCollision->SetCollisionResponseToChannel(ECollisionChannel::ECC_WorldStatic, ECollisionResponse::ECR_Block);
+			Move->StopMovementImmediately();
+			GetWorld()->GetTimerManager().ClearAllTimersForObject(this);
+		}
 	}
 }

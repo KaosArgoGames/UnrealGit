@@ -9,6 +9,8 @@
 #include <ThirdTry/Public/Actor/CodeWeapon.h>
 #include <Widget/C_BaseUserWidget.h>
 #include <Kismet/GameplayStatics.h>
+#include "Blueprint/UserWidget.h"
+#include "Widget/C_BaseUserWidget.h"
 
 AC_Player::AC_Player()
 {
@@ -34,7 +36,7 @@ void AC_Player::BeginPlay()
 {
 	Super::BeginPlay();
 
-	HUD = CreateWidget<UC_BaseUserWidget>(GetWorld()->GetFirstPlayerController(), UC_BaseUserWidget::StaticClass());
+	HUD = CreateWidget<UC_BaseUserWidget>(GetWorld()->GetFirstPlayerController(), hudClass);
 	//FInputModeGameAndUI Mode;
 	//Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture);
 	//Mode.SetHideCursorDuringCapture(false);
