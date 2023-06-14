@@ -27,7 +27,6 @@ AC_Player::AC_Player()
 	cameraMount->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 30.f), FRotator(0.0f, 0.0f, 0.0f));
 	cameraMount->TargetArmLength = 210.0f;
 	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 90.0f));
-
 }
 
 
