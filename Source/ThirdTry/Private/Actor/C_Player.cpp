@@ -24,7 +24,7 @@ AC_Player::AC_Player()
 
 	//Assign Variables
 	cameraMount->bUsePawnControlRotation = true;
-	cameraMount->SetRelativeLocationAndRotation(FVector(0.0f, 80.0f, 30.f), FRotator(0.0f, 0.0f, 0.0f));
+	cameraMount->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, 30.f), FRotator(0.0f, 0.0f, 0.0f));
 	cameraMount->TargetArmLength = 210.0f;
 	camera->SetRelativeLocation(FVector(0.0f, 0.0f, 90.0f));
 
@@ -37,8 +37,8 @@ void AC_Player::BeginPlay()
 	Super::BeginPlay();
 
 	HUD = CreateWidget<UC_BaseUserWidget>(GetWorld()->GetFirstPlayerController(), hudClass);
-	//FInputModeGameAndUI Mode;
-	//Mode.SetLockMouseToViewportBehavior(EMouseLockMode::LockOnCapture);
+	FInputModeGameAndUI Mode;
+	//Mode.SetLockMouseToViewportBehavior(EMouseLockMode::Lock);
 	//Mode.SetHideCursorDuringCapture(false);
 	//UGameplayStatics::GetPlayerController(GetWorld(), 0)->SetInputMode(Mode);
 	HUD->AddToViewport();

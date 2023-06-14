@@ -51,5 +51,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Function")
 	void PawnDied();
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
-	FSyncWeapon weaponSync;
+	FSyncWeapon weaponSync;	
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+	APawn* parent;
 };

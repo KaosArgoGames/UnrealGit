@@ -45,6 +45,7 @@ void UC_BaseUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 		hit = hitRes.Location;
 		APawn* p = Cast<APawn>(hitRes.Actor);
 
+
 		if (p)
 		{
 			ColorChange(colorTwo);

@@ -4,6 +4,7 @@
 #include "Actor/CodeWeapon.h"
 #include "UObject/ConstructorHelpers.h"
 #include "../../ThirdTry.h"
+#include <Blueprint/WidgetBlueprintLibrary.h>
 
 // Sets default values
 ACodeWeapon::ACodeWeapon()
@@ -20,6 +21,7 @@ ACodeWeapon::ACodeWeapon()
 // Called when the game starts or when spawned
 void ACodeWeapon::BeginPlay()
 {
+	parent = Cast<APawn>(GetParentActor());
 	Super::BeginPlay();
 }
 
@@ -40,8 +42,6 @@ ACodeBullet* ACodeWeapon::Attack()
 			canShoot = false;
 
 			loc = Skeleton->GetSocketLocation("MuzzleFlashSocket");
-			rot = Skeleton->GetSocketRotation("MuzzleFlashSocket");
-
 
 			FActorSpawnParameters param;
 			if (nullptr == Bullet)
@@ -51,10 +51,13 @@ ACodeBullet* ACodeWeapon::Attack()
 			}
 			else
 			{
-				AActor* Actor = GetWorld()->SpawnActor<AActor>(Bullet, loc, rot);
+				FActorSpawnParameters spawnParam;
+				spawnParam.Instigator = parent;
+				spawnParam.Owner = parent->GetController();
+
+				AActor* Actor = GetWorld()->SpawnActor<AActor>(Bullet, loc, parent->GetBaseAimRotation(), spawnParam);
 
 				outVar = Cast<ACodeBullet>(Actor);
-
 				return outVar;
 			}
 			UE_LOG(Game, Warning, TEXT("Didn't Crash inside of Code Weapon"));
