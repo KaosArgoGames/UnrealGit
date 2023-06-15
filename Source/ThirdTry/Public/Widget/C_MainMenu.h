@@ -13,9 +13,19 @@ UCLASS()
 class THIRDTRY_API UC_MainMenu : public UUserWidget
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UImage* BackGround;
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-		class UButton* PlayGame;
+	class UVerticalBox* VertBox;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UC_ButtonWithText* StartButton;
+	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+	class UC_ButtonWithText* EndButton;
+
+	virtual void NativeConstruct();
+
+private:
+	void Quit();
+	void Start();
 };
