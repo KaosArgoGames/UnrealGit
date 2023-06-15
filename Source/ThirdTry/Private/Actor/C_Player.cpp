@@ -10,7 +10,6 @@
 #include <Widget/C_BaseUserWidget.h>
 #include <Kismet/GameplayStatics.h>
 #include "Blueprint/UserWidget.h"
-#include "Widget/C_BaseUserWidget.h"
 
 AC_Player::AC_Player()
 {

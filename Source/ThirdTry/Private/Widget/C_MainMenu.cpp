@@ -9,7 +9,7 @@ void UC_MainMenu::NativeConstruct()
 {
 	Super::NativeConstruct();
 	
-	StartButton->OnClick.AddDynamic(this, UC_MainMenu::Start);
+	StartButton->OnClick.AddDynamic(this, &UC_MainMenu::Start);
 	EndButton->OnClick.AddDynamic(this, &UC_MainMenu::Quit);
 }
 
