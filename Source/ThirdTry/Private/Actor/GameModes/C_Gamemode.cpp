@@ -37,14 +37,15 @@ void AC_Gamemode::RemoveEnemy(AActor* destroyedActor)
 	}
 	else
 	{
+		resUI->Win();
+		resUI->AddToViewport();
+
 		player->DisableInput(playerCon);
 		player->OnDestroyed.RemoveDynamic(this, &AC_Gamemode::RemovePlayer);
 
 		AC_Player* temp = Cast<AC_Player>(player);
 		temp->RemoveUI();
 
-		resUI->Win();
-		resUI->AddToViewport();
 	}
 }
 
@@ -59,11 +60,12 @@ void AC_Gamemode::RemovePlayer(AActor* destroyedActor)
 			temp->GameOver();
 		}
 	}
+
+	resUI->AddToViewport();
 	playerCon->bShowMouseCursor = true;
 	playerCon->SetInputMode(FInputModeUIOnly().SetLockMouseToViewportBehavior(EMouseLockMode::LockAlways));
 
 	AC_Player* temp = Cast<AC_Player>(player);
 	temp->RemoveUI();
 
-	resUI->AddToViewport();
 }
