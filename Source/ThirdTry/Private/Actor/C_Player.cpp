@@ -97,3 +97,19 @@ void AC_Player::SpecialAttack()
 {
 	Super::SpecialAttack();
 }
+
+void AC_Player::HandleDamage(float update)
+{
+	Super::HandleDamage(update);
+
+	UC_BaseUserWidget* temp = Cast<UC_BaseUserWidget>(HUD);
+
+	temp->UpdateHealthBar(update);
+
+	HUD = temp;
+}
+
+void AC_Player::RemoveUI()
+{
+	HUD->RemoveFromParent();
+}

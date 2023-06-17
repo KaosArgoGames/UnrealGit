@@ -36,6 +36,8 @@ public:
 	bool CanPickup() override;
 	bool ShouldPickup() override;
 	void SpecialAttack();
+	void HandleDamage(float update);
+	void RemoveUI();
 private:
 
 };

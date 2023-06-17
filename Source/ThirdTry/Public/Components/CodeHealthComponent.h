@@ -7,7 +7,7 @@
 #include "CodeHealthComponent.generated.h"
 
 //Delegates
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDamaged);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDamaged, float, update);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeath);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -24,6 +24,8 @@ protected:
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Default");
 	float MaxHealth;
+
+	float update;
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;

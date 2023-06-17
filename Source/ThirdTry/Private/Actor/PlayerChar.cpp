@@ -30,7 +30,7 @@ void APlayerChar::BeginPlay()
 	SetObjectRefs();
 
 	//Add Dynamics
-	Health->OnDamage.AddUniqueDynamic(Anim, &URifleAnim::DamageAnim);
+	Health->OnDamage.AddUniqueDynamic(this, &APlayerChar::HandleDamage);
 	Health->OnDeath.AddUniqueDynamic(this, &APlayerChar::HandleDeath);
 	Anim->OnResetShoot.AddDynamic(Weapon, &ACodeWeapon::ResetShoot);
 }
@@ -94,6 +94,11 @@ void APlayerChar::SetObjectRefs()
 	//On Start Casts
 	Weapon = Cast<ACodeWeapon>(WeaponChildActor->GetChildActor());
 	Anim = Cast<URifleAnim>(GetMesh()->GetAnimInstance());
+}
+
+void APlayerChar::HandleDamage(float update)
+{
+	Anim->DamageAnim();
 }
 
 bool APlayerChar::CanPickup()

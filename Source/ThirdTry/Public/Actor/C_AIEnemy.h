@@ -14,7 +14,10 @@ class THIRDTRY_API AC_AIEnemy : public APlayerChar
 {
 	GENERATED_BODY()
 	AC_AIEnemy();
+	void BeginPlay();
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	void HandleDeath();
+	void GameOver();
 };

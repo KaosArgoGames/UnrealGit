@@ -4,6 +4,7 @@
 #include "Widget/C_BaseUserWidget.h"
 #include <Kismet/KismetSystemLibrary.h>
 #include <Blueprint/SlateBlueprintLibrary.h>
+#include "Components/ProgressBar.h"
 
 bool UC_BaseUserWidget::GetDest(FVector& shot, FVector& point)
 {
@@ -20,6 +21,8 @@ void UC_BaseUserWidget::NativeConstruct()
 	dynMat = Reticle->GetDynamicMaterial();
 	Reticle->SetBrushFromMaterial(dynMat);
 	ColorChange(colorOne);
+
+	ratio = 1;
 }
 
 void UC_BaseUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
@@ -64,4 +67,9 @@ void UC_BaseUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTim
 void UC_BaseUserWidget::ColorChange(FLinearColor inColor)
 {
 	dynMat->SetVectorParameterValue(color, colorOne);
+}
+
+void UC_BaseUserWidget::UpdateHealthBar(float update)
+{
+	ratio = update;
 }

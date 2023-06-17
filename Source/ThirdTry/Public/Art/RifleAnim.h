@@ -9,6 +9,8 @@
  * 
  */
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnResetShoot, bool, resetShoot);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDeathEnd);
+
 
 UCLASS()
 class THIRDTRY_API URifleAnim : public UAnimInstance
@@ -45,4 +47,5 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintCallable, Category = "Default")
 	void DeathAnim();
 	FOnResetShoot OnResetShoot;
+	FOnDeathEnd OnDeathEnd;
 };

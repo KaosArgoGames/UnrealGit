@@ -52,6 +52,8 @@ public:
 	virtual void SwapWeapon();
 	UFUNCTION()
 	virtual void SetObjectRefs();
+	UFUNCTION()
+	virtual void HandleDamage(float update);
 
 	//Interface Stuff
 	bool CanPickup() override;

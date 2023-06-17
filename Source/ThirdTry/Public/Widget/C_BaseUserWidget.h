@@ -17,6 +17,8 @@ class THIRDTRY_API UC_BaseUserWidget : public UUserWidget
 public:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 	class UImage* Reticle;
+	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
+	class UProgressBar* HealthBar;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FName color;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
@@ -31,8 +33,12 @@ public:
 	class UMaterialInstanceDynamic* dynMat;
 	UPROPERTY()
 	bool hasHit;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+	float ratio;
 	UFUNCTION()
 	bool GetDest(FVector& shot, FVector& point);
+
+	void UpdateHealthBar(float update);
 protected:
 	virtual void NativeConstruct() override;
 	virtual void NativeTick(const FGeometry& Geo, float dTime) override;
