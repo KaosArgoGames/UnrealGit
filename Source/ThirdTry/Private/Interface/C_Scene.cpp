@@ -35,15 +35,16 @@ void UC_Scene::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 void UC_Scene::BeginEffect(EEffectType Effect, AActor* Causer)
 {
 	FActorSpawnParameters SpawnP;
-	SpawnP.Owner = Causer;
-	AActor* FireEffect;
+	SpawnP.Owner = Causer;/*
+	AActor* FireEffect = NULL;*/
 	switch (Effect)
 	{
-	case EEffectType::ET_Fire:
+	case EEffectType::Fire_Damage:/*
 		FireEffect = GetWorld()->SpawnActor<AActor>(FireClass.Get(), GetComponentTransform(), SpawnP);
-		FireEffect->AttachToActor(GetOwner(), FAttachmentTransformRules::SnapToTargetIncludingScale);
+		FireEffect->AttachToActor(GetOwner(), FAttachmentTransformRules::SnapToTargetIncludingScale);*/
 		break;
 	case EEffectType::NumEffects:
 		break;
+	}
 }
 

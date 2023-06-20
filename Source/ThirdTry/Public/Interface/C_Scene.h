@@ -29,6 +29,6 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 	void BeginEffect(EEffectType Effect, AActor* Causer);
-	UPROPERTY(BlueprintReadWrite, EditAnywhere)
-		TSubclassOf<class AFireEffect> FireClass;
+//	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+//		TSubclassOf<class AC_DoTFire> FireClass;
 };
