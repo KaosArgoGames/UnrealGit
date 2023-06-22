@@ -7,12 +7,17 @@
 
 void UC_ButtonWithText::CallOnClick()
 {
-	OnClick.Broadcast();
+	OnClicked.Broadcast();
 }
 
 void UC_ButtonWithText::PreConstruct(bool IsDesignTime)
 {
 	Super::PreConstruct(IsDesignTime);
+}
+
+void UC_ButtonWithText::NativeConstruct()
+{
+	Super::NativeConstruct();
 
 	Information->SetText(inText);
 

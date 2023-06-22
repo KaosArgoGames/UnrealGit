@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "../Actor/GameModes/C_Instance.h"
 #include "C_MainMenu.generated.h"
 
 /**
@@ -22,10 +23,15 @@ public:
 	class UC_ButtonWithText* StartButton;
 	UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
 	class UC_ButtonWithText* EndButton;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
+	UC_Instance* instance;
 
-	virtual void NativeConstruct();
+	virtual void NativePreConstruct() override;
+	virtual void NativeConstruct() override;
 
 private:
+	UFUNCTION()
 	void Quit();
+	UFUNCTION()
 	void Start();
 };

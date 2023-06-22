@@ -13,13 +13,13 @@ void UC_WinLose::NativePreConstruct()
 
 	gameRef = Cast<UC_Instance>(GetGameInstance());
 
-	reloadButton->OnClick.AddDynamic(this, &UC_WinLose::Restart);
-	quitButton->OnClick.AddDynamic(this, &UC_WinLose::ToMenu);
+	ReloadButton->OnClicked.AddDynamic(this, &UC_WinLose::Restart);
+	QuitButton->OnClicked.AddDynamic(this, &UC_WinLose::ToMenu);
 }
 
 void UC_WinLose::Win()
 {
-	vertBox->SetVisibility(ESlateVisibility::Hidden);
+	VertBox->SetVisibility(ESlateVisibility::Hidden);
 	ChangeResult->SetActiveWidgetIndex(1);
 	FTimerHandle temp;
 	GetWorld()->GetTimerManager().SetTimer(temp, this, &UC_WinLose::ToMenu, timer, false);

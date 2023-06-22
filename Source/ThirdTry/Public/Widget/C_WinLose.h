@@ -22,11 +22,11 @@ public:
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
 		class UWidgetSwitcher* ChangeResult;
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-		class UVerticalBox* vertBox;
+		class UVerticalBox* VertBox;
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-		class UC_ButtonWithText* reloadButton;
+		class UC_ButtonWithText* ReloadButton;
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget))
-		UC_ButtonWithText* quitButton;
+		UC_ButtonWithText* QuitButton;
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Variable")
 		class UC_Instance* gameRef;
 

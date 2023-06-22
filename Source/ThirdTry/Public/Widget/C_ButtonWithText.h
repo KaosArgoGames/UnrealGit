@@ -25,10 +25,11 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
 	FText inText;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Default")
-	FOnClick OnClick;
+	FOnClick OnClicked;
 
 	UFUNCTION()
 	void CallOnClick();
 protected:
 	void PreConstruct(bool IsDesignTime);
+	virtual void NativeConstruct() override;
 };
